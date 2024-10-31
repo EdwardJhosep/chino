@@ -8,6 +8,9 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\VentaServicioController;
 use App\Http\Controllers\VentaProductoController;
+use App\Http\Controllers\GananciasController;
+
+
 
 
 
@@ -27,6 +30,8 @@ Route::middleware(['auth'])->group(function () {
     })->name('admin.dashboard');
 
     Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin/ganancias', [GananciasController::class, 'index'])->name('admin.ganancias');
+
     
 
 //productos

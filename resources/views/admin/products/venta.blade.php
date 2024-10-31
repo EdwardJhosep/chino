@@ -16,8 +16,11 @@
             </svg>
         </button>
     </header>
-    <div class="flex">
-        <nav id="menu" class="bg-white shadow-lg w-full md:w-64 h-screen overflow-y-auto p-5 fixed md:relative transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out">
+    <div class="chatbot-container" style="display: block;"> <!-- Cambia 'none' por 'block' -->
+    @livewire('chatbot')
+</div>
+    <div class="flex" style="z-index:9999;">
+        <nav id="menu" class="bg-white shadow-lg w-full md:w-64 h-screen overflow-y-auto p-5 fixed z-3 md:relative transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out" style="z-index:9999;">
             <h2 class="text-2xl font-semibold text-center text-blue-800 mb-5">Menú de Administración</h2>
             <ul class="space-y-2">
                 <li class="mb-1">
@@ -66,6 +69,14 @@
                         </li>
                     </ul>
                 </li>
+                <li class="mb-1">
+                  <a href="{{ route('admin.ganancias') }}" class="flex items-center text-gray-700 hover:bg-blue-100 rounded-lg px-3 py-2 transition duration-200">
+                  <svg class="w-5 h-5 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                  </svg>
+                   Ver Ganancias
+                  </a>
+                 </li>
                 <li class="mt-5">
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
@@ -101,9 +112,9 @@
               {{ session('error') }}
             </div>
             @endif
-            <div class="row" id="service-list">
+            <div class="row z-0" id="service-list">
                 @foreach ($productos as $producto)
-                    <div class="col-md-3 col-sm-6 mb-4 service-item">
+                    <div class="col-md-3 col-sm-6 mb-4 service-item z-0" style="z-index:0;">
                         <div class="card h-100 shadow">
                             <img src="{{ asset('storage/' . $producto->foto) }}" class="card-img-top" alt="{{ $producto->nombre }}">
                             <div class="card-body">
