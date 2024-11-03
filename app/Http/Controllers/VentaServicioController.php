@@ -10,7 +10,6 @@ class VentaServicioController extends Controller
     public function store(Request $request)
     {
         // Validar la entrada
-        dd("gaa");
         $validated = $request->validate([
             'servicio_id' => 'required|exists:servicios,id',
             'cantidad' => 'required|integer|min:1',

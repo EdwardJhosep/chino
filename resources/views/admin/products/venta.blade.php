@@ -16,7 +16,7 @@
             </svg>
         </button>
     </header>
-    <div class="chatbot-container" style="display: block;"> <!-- Cambia 'none' por 'block' -->
+    <div class="chatbot-container" style="display: block;">
     @livewire('chatbot')
 </div>
     <div class="flex" style="z-index:9999;">
@@ -106,30 +106,27 @@
             {{ session('success') }}
             </div>
             @endif
-
             @if(session('error'))
              <div class="alert alert-danger">
               {{ session('error') }}
             </div>
             @endif
-            <div class="row z-0" id="service-list">
-                @foreach ($productos as $producto)
-                    <div class="col-md-3 col-sm-6 mb-4 service-item z-0" style="z-index:0;">
-                        <div class="card h-100 shadow">
-                            <img src="{{ asset('storage/' . $producto->foto) }}" class="card-img-top" alt="{{ $producto->nombre }}">
-                            <div class="card-body">
-                                <h5 class="card-title">Nombre: {{ $producto->nombre }}</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Categoría: {{ $producto->categoria }}</h6>
-                                <p class="card-text">Descripción: {{ $producto->descripcion }}</p>
-                                <p class="font-weight-bold text-lg">Precio: S/{{ $producto->precio }}</p>
-                                <button class="btn btn-primary mt-3" data-toggle="modal" data-target="#ventaModal" data-nombre="{{ $producto->nombre }}" data-precio="{{ $producto->precio }}" data-id="{{ $producto->id }}">Crear Venta</button>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
+            <div class="row justify-content-center" id="service-list">
+            @foreach ($productos as $producto)
+             <div class="col-md-3 col-sm-6 mb-4 service-item">
+            <div class="card h-100 shadow border rounded">
+                <img src="{{ asset('storage/' . $producto->foto) }}" class="card-img-top" alt="{{ $producto->nombre }}" style="object-fit: cover; height: 180px;">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title font-weight-bold text-truncate">{{ $producto->nombre }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Categoría: {{ $producto->categoria }}</h6>
+                    <p class="card-text flex-grow-1 text-truncate">{{ $producto->descripcion }}</p>
+                    <p class="font-weight-bold text-lg">Precio: S/{{ $producto->precio }}</p>
+                    <button class="btn btn-primary mt-3" data-toggle="modal" data-target="#ventaModal" data-nombre="{{ $producto->nombre }}" data-precio="{{ $producto->precio }}" data-id="{{ $producto->id }}">Crear Venta</button>
+                </div>
+                </div>
+               </div>
+            @endforeach
             </div>
-        </div>
-    </div>
         <!-- Modal para crear venta -->
         <div class="modal fade" id="ventaModal" tabindex="-1" role="dialog" aria-labelledby="ventaModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">

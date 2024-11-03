@@ -145,8 +145,13 @@
                                                             <input type="number" class="form-control" id="precio{{ $producto->id }}" name="precio" value="{{ $producto->precio }}" required>
                                                         </div>
                                                         <div class="form-group">
+                                                            <label for="stock{{ $producto->id }}">Stock</label>
+                                                            <input type="number" class="form-control" id="stock{{ $producto->id }}" name="stock" value="{{ $producto->stock }}" required min="1">
+                                                        </div>
+                                                        <div class="form-group">
                                                             <label for="foto{{ $producto->id }}">Foto</label>
                                                             <input type="file" class="form-control" id="foto{{ $producto->id }}" name="foto">
+                                                            <small class="form-text text-muted">Deja vacío si no deseas cambiar la imagen.</small>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
@@ -157,11 +162,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- <form action="{{ route('admin.products.destroy', $producto) }}" method="POST" style="display: inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Eliminar</button>
-                                    </form> -->
                                 </td>
                             </tr>
                         @endforeach

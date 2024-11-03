@@ -6,6 +6,7 @@ use App\Models\Producto; // Asegúrate de importar el modelo
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
+
 class ProductController extends Controller
 {
     public function index()
@@ -57,13 +58,13 @@ class ProductController extends Controller
         return view('admin.products.edit', compact('producto'));
     }
 
-    // Actualizar un producto existente
     public function update(Request $request, $id)
     {
         $request->validate([
             'nombre' => 'required|string|max:255',
             'categoria' => 'required|string|max:255',
             'precio' => 'required|numeric',
+            'stock' => 'required|integer|min:1',
             'foto' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -71,6 +72,7 @@ class ProductController extends Controller
         $producto->nombre = $request->input('nombre');
         $producto->categoria = $request->input('categoria');
         $producto->precio = $request->input('precio');
+        $producto->stock = $request->input('stock');
 
         // Verificar si se ha subido una nueva foto
         if ($request->hasFile('foto')) {
